@@ -26,8 +26,8 @@ class LoginController extends Controller
         //      $user = UserCustom::where('uid', $username)->first();
 
         $credentials = [
-            'uid' => $username,
-            'password' => $password
+            LdapUser::authLoginAttribute => $username,
+            LdapUser::authPasswordAttribute => $password
         ];
 
         if (Auth::guard('web')->attempt($credentials)) {
