@@ -13,8 +13,16 @@ use Spatie\Permission\Traits\HasRoles;
 class LdapUser extends User implements AuthenticatableContract {
     use HasRoles;
 
-  //  public static array $objectClasses = [ 'inetOrgPerson'  ];
+    //public static array $objectClasses = [ 'inetOrgPerson'  ]; // for OpenLDAP
 
-  const authPasswordAttribute = 'password';
-  const authLoginAttribute = 'username';
+    const authPasswordAttribute = 'password';
+    //const authLoginAttribute = 'uid';
+
+    const authLoginAttribute = 'username';
+
+    public function getUserName() : string
+    {
+        //return $this->uid[0];  // for OpenLDAP
+         return $this->sAMAccountName[0]; // for MS ADs
+    }
 }
