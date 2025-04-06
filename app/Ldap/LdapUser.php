@@ -23,6 +23,7 @@ class LdapUser extends User implements AuthenticatableContract {
     public function getUserName() : string
     {
         //return $this->uid[0];  // for OpenLDAP
+       // dd($this);
          return $this->sAMAccountName[0]; // for MS ADs
     }
 }
