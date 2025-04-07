@@ -18,12 +18,15 @@ class LdapUser extends User implements AuthenticatableContract {
     const authPasswordAttribute = 'password';
     //const authLoginAttribute = 'uid';
 
-    const authLoginAttribute = 'username';
+    //const authLoginAttribute = 'username';
+    const authLoginAttribute = 'sAMAccountName';
 
     public function getUserName() : string
     {
         //return $this->uid[0];  // for OpenLDAP
        // dd($this);
-         return $this->sAMAccountName[0]; // for MS ADs
+         //return $this->sAMAccountName[0]; // for MS ADs
+        return $this->getFirstAttribute('sAMAccountName');
     }
 }
+
